@@ -2,4 +2,4 @@
  
 ### ProgressBar
 
-![](ProgressBar/ProgressBar.png)
+[![](ProgressBar/ProgressBar.png)](https://github.com/defmylife/Qt-templates/blob/main/ProgressBar/ProgressBar.py)

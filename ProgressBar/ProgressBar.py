@@ -91,7 +91,6 @@ class CustomProgressBar(QtWidgets.QProgressBar):
         elif self.value() == self.maximum():        # DONE State
             self.setStyleSheet( self.STYLE.DONE )
             self.setFormat("Done" if text is None else text)
-            print(self.value(), self.maximum())
         
         else:                                       # IN PROGRESS State
             self.setStyleSheet( self.STYLE.PROCESS )
@@ -110,7 +109,7 @@ if __name__ == '__main__':
     layout.setSpacing(12)
     layout.setObjectName("layout")
 
-    ################################################
+    #TUTORIAL ######################################
     progressbar1 = CustomProgressBar(window)
     progressbar1.setStatus(
         current=0, maximum=20, text='Waiting'
