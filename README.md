@@ -3,3 +3,7 @@
 ### ProgressBar
 
 [![](ProgressBar/ProgressBar.png)](https://github.com/defmylife/Qt-templates/blob/main/ProgressBar/ProgressBar.py)
+
+### ComboBox
+
+[![](ComboBox/ComboBox.png)](https://github.com/defmylife/Qt-templates/blob/main/ComboBox/ComboBox.py)
