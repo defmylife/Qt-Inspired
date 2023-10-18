@@ -2,9 +2,7 @@
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class CustomComboBox(QtWidgets.QWidget):
-    activated = QtCore.pyqtSignal(str)
-    
+class CustomComboBox(QtWidgets.QWidget):    
     def __init__(self, 
         parent: typing.Optional[QtWidgets.QWidget] = ...,
         init: str = "No Connection"
