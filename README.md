@@ -4,6 +4,10 @@
 
 [![](ProgressBar/ProgressBar.png)](https://github.com/defmylife/Qt-templates/blob/main/ProgressBar/ProgressBar.py)
 
-### ComboBox
+### StatusButtons 
 
-[![](ComboBox/ComboBox.png)](https://github.com/defmylife/Qt-templates/blob/main/ComboBox/ComboBox.py)
+#### ComboBox
+[![](StatusButtons/ComboBox.png)](https://github.com/defmylife/Qt-templates/blob/main/StatusButtons/ComboBox.py)
+
+#### PushButton
+[![](StatusButtons/PushButton.png)](https://github.com/defmylife/Qt-templates/blob/main/StatusButtons/PushButton.py)
