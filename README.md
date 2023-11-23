@@ -15,3 +15,7 @@
 
 #### PushButton
 [![](StatusButtons/PushButton.png)](https://github.com/defmylife/Qt-templates/blob/main/StatusButtons/PushButton.py)
+
+### SearchBar
+
+[![](SearchBar/SearchBar.png)](https://github.com/defmylife/Qt-templates/blob/main/SearchBar/SearchBar.py)
