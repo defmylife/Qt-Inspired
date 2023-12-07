@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/calendar_svgrepo_com_checked.png</file>
+    <file>icons/calendar_svgrepo_com_unchecked.png</file>
+    <file>icons/graph_new_up_svgrepo_com_checked.png</file>
+    <file>icons/graph_new_up_svgrepo_com_unchecked.png</file>
+    <file>icons/home_2_svgrepo_com_checked.png</file>
+    <file>icons/home_2_svgrepo_com_unchecked.png</file>
+    <file>icons/profile_circle_svgrepo_com(1)_checked.png</file>
+    <file>icons/profile_circle_svgrepo_com(1)_unchecked.png</file>
+    <file>icons/setting_2_svgrepo_com(1)_checked.png</file>
+    <file>icons/setting_2_svgrepo_com(1)_unchecked.png</file>
+  </qresource>
+</RCC>
