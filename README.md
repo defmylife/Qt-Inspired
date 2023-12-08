@@ -23,4 +23,4 @@
 
 ### SideBar
 
-[![](SideBar/SideBar.png)](https://github.com/defmylife/Qt-Inspired/blob/main/SideBar/SideBar.py)
+[![](SideBar/SideBar.png)](https://github.com/defmylife/Qt-Inspired/blob/main/SideBar)

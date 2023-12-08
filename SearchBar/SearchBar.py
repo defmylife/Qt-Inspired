@@ -78,6 +78,12 @@ class SearchBar(QtWidgets.QLineEdit):
         self.searchBtn.setIcon(icon)
         self.searchBtn.setObjectName("searchBtn")
         self.searchBtn.move(5, 5)
+    
+    def keyPressEvent(self, event):
+        super().keyPressEvent(event)
+        #
+        if event.key() == QtCore.Qt.Key_Escape:
+            self.clearFocus()
 
 
 if __name__ == '__main__':
