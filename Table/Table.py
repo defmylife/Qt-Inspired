@@ -6,6 +6,7 @@ class CustomQTableWidget(QTableWidget):
     def __init__(self, df, parent=None):
         super().__init__(parent)
         self.df = df
+        self.current_sort_order = 'ascending'  # Initial sort order
         self.pandas_to_qtablewidget(self.df, _setup=True)
 
     def pandas_to_qtablewidget(self, df=None, _setup=False):
@@ -100,26 +101,86 @@ class CustomQTableWidget(QTableWidget):
                 self.setItem(i, j, item)
 
     def create_sort_button(self, init_action='Patient_ID'):
+        self.current_sort_action = init_action
+
         # Create Sort button
         sort_button = QToolButton()
         sort_button.setText("Sort by "+init_action)
         sort_button.setPopupMode(QToolButton.MenuButtonPopup)
 
+        sort_button.setStyleSheet("""
+        QToolButton {
+            background-color: #FFF;
+            color: #B5BFC6; 
+            border-radius: 14px;
+            text-align: center; 
+            font: 63 10pt "Montserrat SemiBold";
+            
+            selection-background-color: #FFF; /*ECECEC*/
+            selection-color: #0F5BCD;
+            outline: 0;
+            padding: 8px;
+            padding-right: 16px;
+        }
+        QToolButton:hover {
+            background-color: #F8F9FB; 
+        }
+        """)
+
         # Create Sort options menu
         sort_menu = QMenu()
+
+        sort_menu.setStyleSheet("""
+        QMenu {
+            background-color: white;
+            margin: 2px; /* some spacing around the menu */
+        }
+
+        QMenu::item {
+            font: 63 10pt "Montserrat SemiBold";
+            padding: 6px 25px 6px 20px;
+            border: 1px solid transparent; /* reserve space for selection border */
+        }
+
+        QMenu::item:selected {
+            background: #DAE7FB;
+        }
+
+        QMenu::separator {
+            height: 2px;
+            background: lightblue;
+            margin-left: 10px;
+            margin-right: 5px;
+        }
+
+        QMenu::indicator {
+            width: 13px;
+            height: 13px;
+        }
+        """)
 
         # Group to ensure only one item is checked at a time
         group = QActionGroup(sort_menu)
         group.setExclusive(True)  # Only one action can be checked at a time
 
-        def update_button_text(action):
-            sort_button.setText("Sort by "+action.text())
+        def update_button_text(action=None):
+            if action is not None: self.current_sort_action = action.text()
             
-            # Sort DataFrame by the selected column name
-            self.df.sort_values(by=action.text(), inplace=True)
+            sort_button.setText("Sort by "+self.current_sort_action)
+
+            # Toggle between ascending and descending sort order
+            if self.current_sort_order == 'ascending':
+                self.current_sort_order = 'descending'
+            else:
+                self.current_sort_order = 'ascending'
+
+            # Sort DataFrame by the selected column name and current sort order
+            self.df.sort_values(by=self.current_sort_action, inplace=True, ascending=(self.current_sort_order == 'ascending'))
 
             # Update the table with the sorted data
             self.pandas_to_qtablewidget()
+        
+        sort_button.clicked.connect(lambda: update_button_text())
 
         # Add checklist items to the menu
         for column in self.df.columns:
@@ -161,6 +222,8 @@ layout.addWidget(sort_button)
 layout.addWidget(custom_table_widget)
 
 window.setLayout(layout)
+window.setStyleSheet("""
+QWidget {background-color: #FFF}""")
 window.show()
 
 sys.exit(app.exec_())
