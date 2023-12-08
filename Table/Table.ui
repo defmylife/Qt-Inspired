@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TableSet</class>
+ <widget class="QWidget" name="TableSet">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>555</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	background-color: rgb(255, 255, 255);
+	font: 63 10pt &quot;Montserrat SemiBold&quot;;
+	color: #B5BFC6;
+}
+
+/*------------------------------ TOOL-BUTTON ------------------------------*/
+
+QToolButton {
+    background-color: #FFF;
+    color: #4A535F; 
+    font: 63 9pt &quot;Montserrat SemiBold&quot;;
+
+    border-radius: 14px;
+	border: 1px solid #EDF0F6; 
+    
+    selection-background-color: #FFF; /*ECECEC*/
+    selection-color: #0F5BCD;
+    outline: 0;
+    padding-left: 16px;
+    padding-right: 24px;
+}
+QToolButton:hover {
+    background-color: #F8F9FB; 
+}
+QToolButton::menu-button {
+    border: none; /* Remove border from the menu button */
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right; /* Adjust the position of the menu indicator */
+    image: url(); /* Set an empty image to hide the default menu indicator */
+	width: 24px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+QToolButton::menu-button:hover {
+    background-color: #EDF0F6; 
+}
+
+/*------------------------------ TABLE ------------------------------*/
+
+#Frame {
+border: 1px solid #EDF0F6;
+border-radius: 16px;
+}
+
+QHeaderView::section { 
+	background-color:#FFF;  
+	border: 0px;
+	padding-left: 16px;
+	padding-top: 6px; padding-bottom: 6px;
+	border-bottom: 1px solid #EDF0F6; /*EDF0F6 / F8F9FB*/
+}
+QTableWidget {
+	font: 10.5pt &quot;Montserrat Medium&quot;;
+	color: #4A535F;
+	selection-background-color: #DAE7FB;
+	selection-color: #4A535F;
+	outline: 0;
+	border: 0px;
+}
+QTableWidget::item {
+	border-bottom: 1px solid #EDF0F6; /*EDF0F6 / F8F9FB*/
+ 	padding-left: 16px;
+  	/*margin-top: 8px;*/
+	selection-background-color: #DAE7FB;
+	outline: 0;
+}      
+
+/*------------------------------ SCROLLBAR ------------------------------*/
+
+/*  SCROLLBAR */
+ QScrollBar:vertical {
+	border: none;
+    background: #FFF;
+    width: 12px;
+    margin: 0px 3px 0px 3px;
+	border-radius: 0px;
+ }
+QScrollBar:horizontal {
+	border: none;
+    background: #FFF;
+    height: 12px;
+    margin: 3px 0px 3px 0px;
+	border-radius: 0px;
+ }
+
+/*  HANDLE BAR VERTICAL */
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {	
+	background-color: #EDF0F6;
+	min-height: 0px;
+	border-radius: 3px;
+}
+QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover{	
+	background-color: #B5BFC6;
+}
+QScrollBar::handle:vertical:pressed, QScrollBar::handle:horizontal:pressed {	
+	background-color: #B5BFC6;
+}
+
+/* BTN TOP, BOTTOM - SCROLLBAR */
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
+	border: none;
+	background-color:#FFF;
+	height: 15px; width: 15px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal {
+	border: none;
+	background-color: #FFF;
+	height: 15px; width: 15px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="Frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="leftMargin">
+       <number>4</number>
+      </property>
+      <property name="topMargin">
+       <number>4</number>
+      </property>
+      <property name="rightMargin">
+       <number>4</number>
+      </property>
+      <property name="bottomMargin">
+       <number>4</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="Bar" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>8</number>
+         </property>
+         <property name="leftMargin">
+          <number>12</number>
+         </property>
+         <property name="topMargin">
+          <number>12</number>
+         </property>
+         <property name="rightMargin">
+          <number>12</number>
+         </property>
+         <property name="bottomMargin">
+          <number>12</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="SortBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton::menu-indicator {
+    image: none; /* Hide the default menu indicator */
+}</string>
+           </property>
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+           <property name="text">
+            <string>Sort by Patient ID</string>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::MenuButtonPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextOnly</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>false</bool>
+           </property>
+           <property name="arrowType">
+            <enum>Qt::NoArrow</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="Table">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Montserrat Medium</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="cursor" stdset="0">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="autoScrollMargin">
+         <number>4</number>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="showDropIndicator" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="dragDropOverwriteMode">
+         <bool>false</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="textElideMode">
+         <enum>Qt::ElideMiddle</enum>
+        </property>
+        <property name="verticalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::SolidLine</enum>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="rowCount">
+         <number>10</number>
+        </property>
+        <property name="columnCount">
+         <number>6</number>
+        </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>150</number>
+        </attribute>
+        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>40</number>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderMinimumSectionSize">
+         <number>40</number>
+        </attribute>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <column>
+         <property name="text">
+          <string>Patient ID</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Age</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Gender</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>BMI</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <item row="0" column="0">
+         <property name="text">
+          <string>00-001</string>
+         </property>
+        </item>
+        <item row="0" column="1">
+         <property name="text">
+          <string>John Doe</string>
+         </property>
+        </item>
+        <item row="0" column="2">
+         <property name="text">
+          <string>42</string>
+         </property>
+        </item>
+        <item row="0" column="3">
+         <property name="text">
+          <string>M</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </item>
+        <item row="0" column="4">
+         <property name="text">
+          <string>22.5</string>
+         </property>
+        </item>
+        <item row="0" column="5">
+         <property name="text">
+          <string/>
+         </property>
+        </item>
+        <item row="1" column="0">
+         <property name="text">
+          <string>00-002</string>
+         </property>
+        </item>
+        <item row="1" column="1">
+         <property name="text">
+          <string>Jane Smith</string>
+         </property>
+        </item>
+        <item row="1" column="2">
+         <property name="text">
+          <string>35</string>
+         </property>
+        </item>
+        <item row="1" column="3">
+         <property name="text">
+          <string>F</string>
+         </property>
+        </item>
+        <item row="1" column="4">
+         <property name="text">
+          <string>26.1</string>
+         </property>
+        </item>
+        <item row="2" column="0">
+         <property name="text">
+          <string>00-003</string>
+         </property>
+        </item>
+        <item row="2" column="1">
+         <property name="text">
+          <string>Charlie Brown</string>
+         </property>
+        </item>
+        <item row="2" column="2">
+         <property name="text">
+          <string>65</string>
+         </property>
+        </item>
+        <item row="2" column="3">
+         <property name="text">
+          <string>M</string>
+         </property>
+        </item>
+        <item row="2" column="4">
+         <property name="text">
+          <string>29.5</string>
+         </property>
+        </item>
+        <item row="3" column="0">
+         <property name="text">
+          <string>00-004</string>
+         </property>
+        </item>
+        <item row="3" column="1">
+         <property name="text">
+          <string>Bob Johnson</string>
+         </property>
+        </item>
+        <item row="3" column="2">
+         <property name="text">
+          <string>28</string>
+         </property>
+        </item>
+        <item row="3" column="3">
+         <property name="text">
+          <string>M</string>
+         </property>
+        </item>
+        <item row="3" column="4">
+         <property name="text">
+          <string>24.3</string>
+         </property>
+        </item>
+        <item row="4" column="0">
+         <property name="text">
+          <string>00-005</string>
+         </property>
+        </item>
+        <item row="4" column="1">
+         <property name="text">
+          <string>Alice Williams</string>
+         </property>
+        </item>
+        <item row="4" column="2">
+         <property name="text">
+          <string>50</string>
+         </property>
+        </item>
+        <item row="4" column="3">
+         <property name="text">
+          <string>F</string>
+         </property>
+        </item>
+        <item row="4" column="4">
+         <property name="text">
+          <string>28.7</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="src.qrc"/>
+ </resources>
+ <connections/>
+</ui>
