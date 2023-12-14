@@ -24,3 +24,8 @@
 ### SideBar
 
 [![](SideBar/SideBar.png)](https://github.com/defmylife/Qt-Inspired/blob/main/SideBar)
+
+
+### Hovering
+
+[![](Hover/Hover.png)](https://github.com/defmylife/Qt-Inspired/blob/main/Hover/Hover.py)
