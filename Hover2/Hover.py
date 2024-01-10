@@ -97,6 +97,7 @@ class CardWidget(QFrame):
 
     def set_background_image(self, background_image, crop_coords):
         img = background_image.crop(crop_coords)
+        img = img.convert('RGB')
         img = img.resize((self.image.width(), self.image.height()))
         # img.save("geeks.jpg")
 
