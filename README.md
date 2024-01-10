@@ -29,3 +29,5 @@
 ### Hovering
 
 [![](Hover/Hover.png)](https://github.com/defmylife/Qt-Inspired/blob/main/Hover/Hover.py)
+
+[![](Hover2/Hover2.png)](https://github.com/defmylife/Qt-Inspired/blob/main/Hover2/Hover.py)
