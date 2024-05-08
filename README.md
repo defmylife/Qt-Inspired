@@ -1,7 +1,7 @@
 # 🎨Qt-templates
  
 ### ✨Highlight
-[![](RotatedWidget/RotatedWidget+Hover.gif)](https://github.com/defmylife/Qt-Inspired#RotatedWidget+Hovering)
+[![](RotatedWidget/RotatedWidget+Hover.gif)](https://github.com/defmylife/Qt-Inspired#rotatedwidget--hovering)
 
 ---
 
