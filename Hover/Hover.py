@@ -45,6 +45,7 @@ class CardWidget(QFrame):
         super().__init__(parent)
 
         self.setFixedSize(150, 50)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
 
         self.label = QLabel(self)
         self.label.setText('What is this?')
