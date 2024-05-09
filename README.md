@@ -42,3 +42,7 @@
 Using PyQt5's QGraphicsProxyWidget, this feature allows for the creation of rotated QtWidgets within a QGraphicsScene. The functionality includes customizing widget styles and implementing hover events for interactive user experiences.
 
 [![](RotatedWidget/RotatedWidget+Hover.png)](https://github.com/defmylife/Qt-Inspired/blob/main/RotatedWidget/RotatedWidget.py)
+
+> 🚀Introducing support for [**YOLO-OBB**](https://docs.ultralytics.com/tasks/obb/) (_Oriented Bounding Boxes Object Detection_) output format! Check out the 👉[**code**](https://github.com/defmylife/Qt-Inspired/blob/main/RotatedWidget/RotatedWidgetWithYolo.py) snippet provided for implementation details.
+> 
+> ![](https://github.com/RizwanMunawar/ultralytics/assets/62513924/9a366262-910a-403b-a5e2-9c68b75700d3)
