@@ -1,7 +1,10 @@
-import sys, math
+import sys, math, os, logging, shutil
 from PyQt5.QtWidgets import QApplication, QStackedWidget, QWidget, QLabel, QStyleOption, QStyle, QHBoxLayout, QLineEdit, QPushButton, QSpacerItem, QSizePolicy
-from PyQt5.QtCore import Qt, QPoint, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import Qt, QObject, QPoint, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QMouseEvent, QCursor, QPixmap, QPainter, QIcon
+from rich import print
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class Popup(QWidget):
     def __init__(self, parent: QWidget | None = ...) -> None:
@@ -55,7 +58,7 @@ class Popup(QWidget):
         page2_layout.addWidget(self.push_button)
         page2.setLayout(page2_layout)
 
-        # First page
+        # Third page
         page3 = QWidget()
         page3_layout = QHBoxLayout()
         self.finished_label = QLabel("Thank you for feedback :)", page3)
@@ -79,7 +82,7 @@ class Popup(QWidget):
     def activate(self, text: str, pos :QPoint, is_done: bool) -> None:
         self.label.setText(text)
         self.line_edit.setText(text)
-        self.activated_sender = self.sender()
+        self.activated_sender :AnnotatedPoint = self.sender()
 
         offset_x = 30
         offset_y = -20
@@ -167,20 +170,29 @@ class AnnotatedPoint(QWidget):
     clickedInfo = pyqtSignal(str, QPoint, bool)
     hoveredInfo = pyqtSignal(str, float, QPoint, bool)
     
-    def __init__(self, parent: QWidget | None, classname: str, conf: float, size: int = 20, margin: int = 2) -> None:
+    def __init__(self, parent: QWidget | None, 
+            classname: str, 
+            conf: float, 
+            size: int = 20, 
+            pos :QPoint = None, 
+            image_path: str = '',
+            margin: int = 2,
+        ) -> None:
         super().__init__(parent)
 
         self.is_done = False
         self.classname = classname
         self.conf = conf
+        self.position = pos
+        self.image_path = image_path
         self.setStyleSheet(f"""\
         QWidget [
-            background-color: green; 
+            background-color: red; 
             border-radius: {math.floor(size/2) - margin}px;
             margin: {margin}px;
         ]
         QWidget :hover [
-            background-color: red; 
+            background-color: yellow; 
             border-radius: {math.floor(size/2)}px;
             margin: 0px;
         ]
@@ -215,51 +227,86 @@ class AnnotatedPoint(QWidget):
         super().paintEvent(event)
 
 class Screen(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent: QObject | None, 
+            background_img: str,
+            size: tuple = (1000, 640),
+            saved_crop_paths_and_pos: list = [], # [('path_to_img', (center_x, center_y)), ...]
+        ):
+        super().__init__(parent)
+        size = (int(size[0]), int(size[1]))
         self.setWindowTitle('Click to create Annotator')
-        self.setFixedSize(800, 600)
+        self.setFixedSize(size[0], size[1])
+        self.setCreateMode(False)
+
+        self.saved_crop_paths_and_pos = saved_crop_paths_and_pos
 
         # Option 1: Set a solid background color
         # self.setStyleSheet("background-color: lightblue;")
         
         # Option 2: Create QLabel and set the pixmap
+        self.image_path = background_img
+        pixmap = QPixmap(self.image_path)
+        
         self.background_label = QLabel(self)
-        self.background_label.setPixmap(QPixmap('Annotator/traffic.png'))
-        self.background_label.setFixedSize(800, 600)
+        self.background_label.setPixmap(pixmap.scaled(size[0], size[1])) # Qt.KeepAspectRatio
         self.background_label.setScaledContents(True)  # Ensure the image scales to the size of the label
+        self.background_label.setAlignment(Qt.AlignCenter)
         
         self.popUpWidget = Popup(self)
 
-        # self._children = set()
-        self.setCursor(QCursor(Qt.CrossCursor))
         self.show()
+
+    def setCreateMode(self, is_create_mode: bool): 
+        self._CREATE_MODE = is_create_mode
+        if self._CREATE_MODE: self.setCursor(QCursor(Qt.CrossCursor))
+        else:                 self.setCursor(QCursor(Qt.ArrowCursor))
 
     def mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.LeftButton:
             clicked_widget = self.childAt(event.pos())
             
             if not isinstance(clicked_widget, Popup):
-                self.createAnnotatedPoint(event.pos())
 
-    def createAnnotatedPoint(self, position: QPoint):
+                if self._CREATE_MODE:
+                    self.createAnnotatedPoint(event.pos(), classname='Classname')
+
+    def createAnnotatedPoint(self, 
+            position: QPoint | tuple,
+            classname: str,
+            conf: float = 1.0,
+            image_path: str = '',
+        ):
         # annotated_point = QWidget(self)
-        size = 20
-        annotated_point = AnnotatedPoint(self, classname='Class A', conf=0.8, size=size)
+        size = 20 # size of point
+
+        if isinstance(position, tuple): # change to QPoint
+            x, y = position
+            position = QPoint(int(x), int(y))
+            
+        annotated_point = AnnotatedPoint(self, classname=classname, conf=conf, size=size, pos=position, image_path=image_path)
         annotated_point.setGeometry(position.x() - size//2, position.y() - size//2, size, size)
 
         annotated_point.clickedInfo.connect(self.popUpWidget.activate)
         annotated_point.hoveredInfo.connect(self.popUpWidget.show)
 
-        print('AnnotatedPoint created at', position)
+        logging.debug('AnnotatedPoint created at', position)
 
         # self.add
         # self._children.add(annotated_point)
 
-def main():
-    app = QApplication(sys.argv)
-    window = Screen()
-    sys.exit(app.exec_())
 
 if __name__ == '__main__':
-    main()
+    app = QApplication(sys.argv)
+    parent = QWidget()
+
+    window = Screen(parent,
+        background_img='Annotator/traffic.png')
+    window.setCreateMode(True)
+
+    window.createAnnotatedPoint((355, 217), classname='White car', conf=0.99)
+    window.createAnnotatedPoint((560, 171), classname='White car', conf=0.8)
+    window.createAnnotatedPoint((688, 279), classname='Black car', conf=0.5)
+
+    window.show()
+    parent.show()
+    sys.exit(app.exec_())
